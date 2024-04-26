@@ -18,7 +18,7 @@ Responsive Design: GoalNetShop è progettato con un design responsive che si ada
 
 ## Installazione
 
-1. Clona il repository: `git clone https://github.com/tuonome/goalnetshop.git`
+1. Clona il repository: `git clone https://github.com/Vincenzolaveglia/GoalNetShop`
 2. Apri il progetto in Visual Studio
 3. Configura il database nel file `Web.config`
 4. Esegui l'applicazione in modalità debug o pubblicala su un server web
