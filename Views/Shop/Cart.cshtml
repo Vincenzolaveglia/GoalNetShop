@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Carrello";
+    List<GoalNetShop.Models.Cart> cart = Session["Cart"] as List<GoalNetShop.Models.Cart>;
+}
+
+<h2>Carrello</h2>
+
+@if (cart == null || !cart.Any())
+{
+    <h2>Non ci sono articoli nel carrello</h2>
+}
+else
+{
+    <table class="table text-white">
+        <thead>
+            <tr>
+                <th>Prodotto</th>
+                <th class="text-center">Taglia</th>
+                <th class="text-center">Quantità</th>
+                <th>Totale</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in cart)
+            {
+                <tr>
+                    <td>@item.nameProduct</td>
+                    <td class="text-center">@item.Size</td>
+                    <td class="text-center">@item.Quantity</td>
+                    <td>@(item.Price * item.Quantity)</td>
+                    <td>
+                        @using (Html.BeginForm("RemoveFromCart", "Shop", FormMethod.Post))
+                        {
+                            @Html.Hidden("productId", item.ProductId)
+                            <button type="submit" class="btn btn-outline-light"><ion-icon name="trash-outline"></ion-icon></button>
+                        }
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+    <div>
+        <p class="fs-3">
+            <strong>Totale:</strong>
+            @cart.Sum(item => item.Price * item.Quantity).ToString("C")
+        </p>
+
+    </div>
+
+    using (Html.BeginForm("Order", "Shop", FormMethod.Post))
+    {
+        <button type="submit" class="btn btn-outline-light mb-3">Acquista</button>
+    }
+
+    using (Html.BeginForm("EmptyCart", "Shop", FormMethod.Post))
+    {
+        <button type="submit" class="btn btn-outline-light">Svuota Carrello</button>
+    }
+
+
+
+
+}

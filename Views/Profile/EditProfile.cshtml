@@ -1,0 +1,36 @@
+﻿@model GoalNetShop.Models.User
+@{
+    ViewBag.Title = "Modifica Profilo";
+}
+<div class="container">
+    <h2 class="text-center mb-4">Modifica Dati Profilo</h2>
+
+    <div class="d-flex text-center">
+        @using (Html.BeginForm("EditProfile", "Profile", FormMethod.Post, new { @class = "form mx-auto" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.UserId)
+
+            <div class="mb-3">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control bg-transparent text-white" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control bg-transparent text-white" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+
+
+            <div class="mb-3">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control bg-transparent text-white", type = "password" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-light px-4">Salva Modifiche</button>
+        }
+    </div>
+
+</div>

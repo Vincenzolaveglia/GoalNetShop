@@ -1,0 +1,39 @@
+﻿@model GoalNetShop.Models.User
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="container">
+    <h2 class="text-center mb-4">Profilo Utente</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="mb-3">Dettagli Utente</h3>
+            <dl class="row">
+                <dt class="col-sm-4">Nome Utente:</dt>
+                <dd class="col-sm-8">@Model.Name</dd>
+
+                <dt class="col-sm-4">Email:</dt>
+                <dd class="col-sm-8">@Model.Email</dd>
+            </dl>
+            <a href="@Url.Action("EditProfile", "Profile", new { userId = Model.UserId })" class="btn btn-outline-light mt-4">Modifica</a>
+        </div>
+        @if (!HttpContext.Current.User.IsInRole("Admin")) {
+        <div class="col-md-6">
+            <h3 class="mb-3">Cronologia Ordini</h3>
+            @if (Model.Orders != null)
+            {
+                <ul>
+                    @foreach (var order in Model.Orders)
+                    {
+                        <li> <strong>Data:</strong> @order.OrderDate.ToShortDateString() - <strong>Qantità:</strong> @order.Quantity - <strong>Totale:</strong> € @order.Total</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>Nessun ordine effettuato.</p>
+            }
+        </div>
+        }
+    </div>
+</div>

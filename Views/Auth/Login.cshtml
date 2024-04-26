@@ -1,0 +1,52 @@
+﻿@model GoalNetShop.Models.User
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+@if (TempData["Success"] != null)
+{
+    <div class="my-5 alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Successo!</strong> @TempData["Success"].
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["IsValid"] != null)
+{
+    <div class="my-5 alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>ERRORE:</strong> @TempData["IsValid"].
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="container">
+    <h2 class="text-center mb-4">Accedi</h2>
+
+    <div class="d-flex text-center">
+        @using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { @class = "form mx-auto" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                <input type="text" class="form-control bg-transparent text-white" id="nameInput" name="Name" placeholder="Nome">
+                @Html.ValidationMessageFor(u => u.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                <input type="email" class="form-control bg-transparent text-white" id="emailInput" name="Email" placeholder="Email">
+                @Html.ValidationMessageFor(u => u.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                <input type="password" class="form-control bg-transparent text-white" id="passwordInput" name="Password" placeholder="Password">
+                @Html.ValidationMessageFor(u => u.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-light px-4">Accedi</button>
+        }
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="@Url.Action("Register", "Auth")" class="text-white">Nuovo? Clicca qui per registrarti</a>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model List<GoalNetShop.Models.Category>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (Model == null || Model.Count == 0)
+{
+    <h2 class="text-white">Non ci sono articoli</h2>
+}
+else
+{
+    <h2 class="text-white">Collezioni:</h2>
+    <div class="row justify-content-center mt-5">
+        @foreach (var category in Model)
+        {
+            <div class="col-md-3 mb-4 mx-auto">
+                <a href="@Url.Action("Product", "Product", new { categoryId = category.CategoryId })" class="text-decoration-none">
+                    <div class="card border-0 bg-transparent">
+                        <img src="@category.ImageCategory)" class="card-img-top img-fluid rounded-5" alt="@category.NameCategory">
+                        <div class="card-body">
+                            <span class="text-white d-flex align-items-center">@category.NameCategory <ion-icon name="arrow-forward-outline" class="text-white"></ion-icon></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        }
+    </div>
+}
+
+
+
+<style>
+    .card {
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+</style>

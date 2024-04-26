@@ -1,0 +1,34 @@
+﻿@model GoalNetShop.Models.Order
+
+@{
+    ViewBag.Title = "Dettagli Ordine";
+}
+
+<h2>Dettagli Ordine</h2>
+
+<div>
+    <p><strong>ID Ordine:</strong> @Model.OrderId</p>
+    <p><strong>Data Ordine:</strong> @Model.OrderDate</p>
+    <p><strong>Quantità:</strong> @Model.Quantity</p>
+    <p><strong>Totale:</strong> €@Model.Total</p>
+    <p><strong>Indirizzo di Spedizione:</strong> @Model.Address</p>
+
+    <h3>Prodotti nell'ordine</h3>
+    <table class="table text-light">
+        <thead>
+            <tr>
+                <th>Nome Prodotto</th>
+                <th>Prezzo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>€@product.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,106 @@
+﻿@model GoalNetShop.Models.Product
+
+@{
+    ViewBag.Title = "Dettagli del Prodotto";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="~/Content/imgs/@Model.Image" class="img-fluid rounded-5" alt="@Model.Name">
+    </div>
+    <div class="col-md-6">
+        <h2 class="fs-1">@Model.Name</h2>
+        <p class="fs-4"><strong>€</strong> @Model.Price</p>
+
+        @if (Model.Description != null)
+        {
+            <strong>Descrizione:</strong><p> @Model.Description</p>
+        }
+        @if (!HttpContext.Current.User.IsInRole("Admin"))
+        {
+            <p class="fw-bold">Taglia</p>
+            if (Model.IdCategory == 1 || Model.IdCategory == 2)
+            {
+                <div class="d-inline">
+                    <button value="S" onclick="setQuantityAndSize(this)" class="btn btn-outline-light size-button">S</button>
+                    <button value="M" onclick="setQuantityAndSize(this)" class="btn btn-outline-light size-button">M</button>
+                    <button value="L" onclick="setQuantityAndSize(this)" class="btn btn-outline-light size-button">L</button>
+                    <button value="XL" onclick="setQuantityAndSize(this)" class="btn btn-outline-light size-button">XL</button>
+
+                </div>
+            }
+            else
+            {
+                <div>
+                    @for (int i = 35; i <= 45; i++)
+                    {
+                        <button value="@i" onclick="setQuantityAndSize(this)" class="btn btn-outline-light size-button">@i</button>
+                    }
+                </div>
+            }
+
+            if (Model.IdCategory == 1)
+            {
+                <p class="mt-3 fw-bold">Messaggio di personalizzazione</p>
+                <input type="text" id="MessaggioPersonalizzazione" name="MessaggioPersonalizzazione" class="form-control rounded-2 bg-transparent border border-white text-white">
+                <span>Esempio: Ronaldo #7</span>
+            }
+
+
+            <p class="mt-3 fw-bold">Quantità</p>
+            <input type="number" id="quantita" name="quantity" class="form-control rounded-2 bg-transparent border border-white text-white" placeholder="Seleziona quantità">
+            using (Html.BeginForm("Cart", "Shop", FormMethod.Post))
+            {
+                <input type="hidden" name="nameProduct" value="@Model.Name" />
+                <input type="hidden" id="priceInput" name="price" value="@Model.Price" />
+                <input type="hidden" id="sizeInput" name="size" />
+                <input type="hidden" id="quantityInput" name="quantity" />
+                if (!HttpContext.Current.User.IsInRole("Admin"))
+                {
+                    <button type="submit" onclick="setQuantityAndSize()" class="btn btn-outline-light mt-4">Aggiungi al carrello</button>
+                }
+            }
+        }
+        @if (HttpContext.Current.User.IsInRole("Admin"))
+        {
+            <a href="@Url.Action("EditArticle", "Admin", new { productId = Model.ProductId })" class="btn btn-outline-light mt-4">Modifica</a>
+            <a href="@Url.Action("DeleteArticle", "Admin", new { productId = Model.ProductId })" class="btn btn-outline-light mt-4">Elimina Prodotto</a>
+        }
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success mt-3" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    function setQuantityAndSize(button) {
+
+        var sizeButtons = document.querySelectorAll('.size-button');
+
+        sizeButtons.forEach(function (btn) {
+            btn.classList.remove('selected');
+        });
+
+        button.classList.add('selected');
+
+        
+        var selectedSize = document.querySelector('.size-button.selected').value;
+        
+        document.getElementById("sizeInput").value = selectedSize;
+        var quantity = document.getElementById("quantita").value;
+        document.getElementById("quantityInput").value = quantity;
+    }
+
+</script>
+
+<style>
+    .selected {
+        background-color: white;
+        color: black;
+    }
+</style>
+

@@ -1,0 +1,51 @@
+﻿@model GoalNetShop.Models.Product
+
+@{
+    ViewBag.Title = "Modifica Articolo";
+}
+<div class="d-flex align-items-center justify-content-center flex-column h-100">
+    <h2 class="mb-3">Modifica Articolo</h2>
+    <p><strong>N.B. Tutti i campi devono essere compilati</strong></p>
+    @using (Html.BeginForm("EditArticle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.ProductId)
+
+        <div class="mb-3">
+            <label for="NuovoCampo" class="control-label">Nome:</label>
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control bg-transparent text-white", placeholder = "Nome prodotto" } })
+        </div>
+
+        <div class="mb-3">
+            <label for="NuovoCampo" class="control-label">Prezzo:</label>
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control bg-transparent text-white", name = "newPrice", placeholder = "Prezzo prodotto" } })
+        </div>
+
+        <div class="mb-3">
+            <label for="NuovoCampo" class="control-label">Descrizione:</label>
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control bg-transparent text-white", placeholder = "Descrizione prodotto" })
+        </div>
+
+
+        <div class="mb-3">
+            <label for="NuovoCampo" class="control-label">Categoria:</label>
+            <select id="IdCategory" name="CategoryId" class="form-select bg-transparent text-white">
+                <option value="" class="text-white bg-black">Seleziona categoria</option>
+                <option value="1" class="text-white bg-black">Maglie</option>
+                <option value="2" class="text-white bg-black">Tute</option>
+                <option value="3" class="text-white bg-black">Scarpe</option>
+            </select>
+            @Html.ValidationMessageFor(m => m.IdCategory, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="mb-3">
+            <label for="NuovoCampo" class="control-label">Immagine:</label>
+            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", type = "file", name = "newImage" } })
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-light px-4">Salva Modifiche</button>
+        </div>
+    }
+</div>

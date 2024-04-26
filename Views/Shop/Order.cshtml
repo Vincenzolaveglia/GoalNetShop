@@ -1,0 +1,51 @@
+﻿@model GoalNetShop.Models.Order
+@{
+    ViewBag.Title = "Order";
+    decimal Total = 0;
+}
+
+<h2>Riepilogo Ordine</h2>
+
+<table class="table text-white">
+    <thead>
+        <tr>
+
+            <th scope="col">Articolo</th>
+            <th scope="col">Taglia</th>
+            <th scope="col">Quantità Ordinata</th>
+            <th scope="col">Prezzo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Session["Cart"] as List<GoalNetShop.Models.Cart>)
+        {
+            Total += item.Price * item.Quantity;
+
+            <tr>
+                <th scope="row">@item.nameProduct</th>
+                <td>@item.Size</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<h3>Inserisci Spedizione</h3>
+@using (Html.BeginForm("Order", "Shop"))
+{
+    @Html.AntiForgeryToken();
+    <div class="form-group">
+        @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control bg-transparent text-white", placeholder = "Indirizzo di Spedizione" } })
+        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mt-4 fs-4">
+        <p class="fw-bold d-inline">TOTALE:</p>
+        <span>€ @Total</span>
+    </div>
+
+    <button type="submit" class="btn btn-light px-4 mt-4">Concludi Ordine</button>
+
+}

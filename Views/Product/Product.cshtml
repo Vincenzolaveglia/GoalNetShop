@@ -1,0 +1,40 @@
+﻿@model List<GoalNetShop.Models.Product>
+
+@{
+    ViewBag.Title = "Prodotti";
+}
+
+@if (Model == null || Model.Count == 0)
+{
+    <h2>Non ci sono prodotti disponibili in questa categoria</h2>
+}
+else
+{
+    <div class="row justify-content-center mt-5">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-3 mb-4 mx-auto">
+                <a href="@Url.Action("Details", "Product", new { productId = product.ProductId })" class="text-decoration-none">
+                    <div class="card bg-transparent border-0 text-white">
+                        <img src="~/Content/imgs/@product.Image" class="card-img-top rounded-5" alt="@product.Name">
+
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text">€ @product.Price</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+}
+
+<style>
+    .card {
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+</style>

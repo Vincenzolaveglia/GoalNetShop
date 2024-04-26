@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GoalNetShop.Models.Order>
+
+@{
+    ViewBag.Title = "Admin Page";
+}
+
+<h2>Benvenuto Admin</h2>
+<p>Per aggiungere un nuovo prodotto @Html.ActionLink("clicca qui", "AddArticle", "Admin").</p>
+
+<h2>Lista Ordini</h2>
+
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Indirizzo Spedizione</th>
+            <th scope="col">Data & Ora</th>
+            <th scope="col">Quantità</th>
+            <th scope="col">Totale</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td scope="row">@order.OrderId</td>
+                <td>@order.Users.Email</td>
+                <td>@order.Users.Name</td>
+                <td>@order.Address</td>
+                <td>@order.OrderDate</td>
+                <td>@order.Quantity</td>
+                <td>@order.Total</td>
+                <td>@Html.ActionLink("Dettagli", "OrderDetails", "Admin", new { orderId = order.OrderId }, null)</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

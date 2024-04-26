@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Faq";
+}
+
+<h2 class="text-center text-white mb-5">FAQ</h2>
+
+<div class="accordion" id="faqAccordion">
+    <div class="accordion-item bg-transparent border-0">
+        <h2 class="accordion-header" id="headingChiSiamo">
+            <button class="accordion-button text-white bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseChiSiamo" aria-expanded="true" aria-controls="collapseChiSiamo">
+                Chi siamo
+            </button>
+        </h2>
+        <div id="collapseChiSiamo" class="accordion-collapse collapse show" aria-labelledby="headingChiSiamo" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-white bg-transparent border-top border-bottom border-white">
+                Siamo un nuovo store, che vende magliette 1:1 a prezzi bassissimi per permettere a tutti i tifosi di poter indossare più maglie di calcio. 
+                Vendiamo magliette, tute e tanto altro ancora!
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item bg-transparent border-0">
+        <h2 class="accordion-header" id="headingTempiSpedizione">
+            <button class="accordion-button collapsed text-white bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTempiSpedizione" aria-expanded="false" aria-controls="collapseTempiSpedizione">
+                Tempi di spedizione
+            </button>
+        </h2>
+        <div id="collapseTempiSpedizione" class="accordion-collapse collapse" aria-labelledby="headingTempiSpedizione" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-white bg-transparent border-top border-bottom border-white">
+                I tempi di spedizione dipendono da vari fattori, ma generalmente si va dalle 2 alle 4 settimane. 
+                Il codice di tracking del pacco verrà spedito su vostra richiesta via mail.
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item bg-transparent border-0">
+        <h2 class="accordion-header" id="headingResi">
+            <button class="accordion-button collapsed text-white bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseResi" aria-expanded="false" aria-controls="collapseResi">
+                Resi
+            </button>
+        </h2>
+        <div id="collapseResi" class="accordion-collapse collapse" aria-labelledby="headingResi" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-white bg-transparent border-top border-bottom border-white">
+                I resi sono accettati esclusivamente in caso di errori sulla maglia. Esempio: Acquisti una maglia ma dopo averla ricevuta non ti piace.
+                In questo caso non verrà accettato nessun reso.
+                Se,per esempio, ricevi la maglia con il nome di un giocatore diverso da quello che avevi richiesto, avrai diritto a un reso.
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item bg-transparent border-0">
+        <h2 class="accordion-header" id="headingAssistenza">
+            <button class="accordion-button collapsed text-white bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAssistenza" aria-expanded="false" aria-controls="collapseAssistenza">
+                Assistenza
+            </button>
+        </h2>
+        <div id="collapseAssistenza" class="accordion-collapse collapse" aria-labelledby="headingAssistenza" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-white bg-transparent border-top border-bottom border-white">
+                Se hai domande sui nostri prodotti, potrai contattarci via mail: example@gmail.com
+            </div>
+        </div>
+    </div>
+</div>
