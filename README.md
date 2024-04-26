@@ -38,7 +38,7 @@ Responsive Design: GoalNetShop è progettato con un design responsive che si ada
 2. Registra il tuo profilo ed effettua il login.
 2. Esplora i prodotti disponibili e aggiungi quelli desiderati al carrello.
 3. Completa l'acquisto tramite il processo di checkout.
-4. Accedi alla tua area utente per visuallizare la cronologia dei tuoi ordini o mofificare i prorpi fati utente.
+4. Accedi alla tua area utente per visuallizare la cronologia dei tuoi ordini o mofificare i propri dati utente.
 
 ## Utilizzo Admin
 
