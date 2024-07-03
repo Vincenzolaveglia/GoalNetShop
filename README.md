@@ -27,7 +27,7 @@ Responsive Design: GoalNetShop è progettato con un design responsive che si ada
 
 - Assicurati di configurare correttamente la connessione al database nel file `Web.config`.
 - Puoi personalizzare il layout e lo stile dell'applicazione modificando i file CSS e le viste Razor.
-- Per funzionare, va aggiunto al database nella tabella "Roles", nel campo "TypeRole" (pecificamente scritti nel seguente modo):
+- Per funzionare, va aggiunto al database nella tabella "Roles", nel campo "TypeRole" (specificamente scritti nel seguente modo):
      - Admin
      - User 
 - L'admin NON si può registrare. Va aggiunto manualmente al database nella tabella "Users", mettendogli come id nel campo "RoleId" quello corrispondente all'id nella tabella "Roles".
